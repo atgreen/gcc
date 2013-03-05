@@ -235,6 +235,7 @@ const (
 	EM_ST100       Machine = 60 /* STMicroelectronics ST100 processor. */
 	EM_TINYJ       Machine = 61 /* Advanced Logic Corp. TinyJ processor. */
 	EM_X86_64      Machine = 62 /* Advanced Micro Devices x86-64 */
+	EM_MOXIE       Machine = 0xFEED /* Moxie */
 
 	/* Non-standard or deprecated. */
 	EM_486         Machine = 6      /* Intel i486. */
@@ -287,6 +288,7 @@ var machineStrings = []intName{
 	{60, "EM_ST100"},
 	{61, "EM_TINYJ"},
 	{62, "EM_X86_64"},
+        {0xFEED, "EM_MOXIE"},
 
 	/* Non-standard or deprecated. */
 	{6, "EM_486"},

@@ -635,6 +635,8 @@ LIBGO_IS_PPC64_FALSE
 LIBGO_IS_PPC64_TRUE
 LIBGO_IS_PPC_FALSE
 LIBGO_IS_PPC_TRUE
+LIBGO_IS_MOXIE_FALSE
+LIBGO_IS_MOXIE_TRUE
 LIBGO_IS_MIPSO64_FALSE
 LIBGO_IS_MIPSO64_TRUE
 LIBGO_IS_MIPSN64_FALSE
@@ -13576,6 +13578,7 @@ is_alpha=no
 is_arm=no
 is_m68k=no
 mips_abi=unknown
+is_moxie=no
 is_ppc=no
 is_ppc64=no
 is_sparc=no
@@ -13693,6 +13696,10 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
       GOARCH=ppc64
     fi
     ;;
+  moxie-*-*)
+    is_moxie=yes
+    GOARCH=moxie
+    ;;
   sparc*-*-*)
     cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
@@ -13792,6 +13799,14 @@ fi
 else
   LIBGO_IS_PPC_TRUE='#'
   LIBGO_IS_PPC_FALSE=
+fi
+
+ if test $moxie_abi != unknown; then
+  LIBGO_IS_MOXIE_TRUE=
+  LIBGO_IS_MOXIE_FALSE='#'
+else
+  LIBGO_IS_MOXIE_TRUE='#'
+  LIBGO_IS_MOXIE_FALSE=
 fi
 
  if test $is_ppc64 = yes; then
@@ -15423,6 +15438,10 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${LIBGO_IS_M68K_TRUE}" && test -z "${LIBGO_IS_M68K_FALSE}"; then
   as_fn_error "conditional \"LIBGO_IS_M68K\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${LIBGO_IS_MOXIE_TRUE}" && test -z "${LIBGO_IS_MOXIE_FALSE}"; then
+  as_fn_error "conditional \"LIBGO_IS_MOXIE\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${LIBGO_IS_MIPS_TRUE}" && test -z "${LIBGO_IS_MIPS_FALSE}"; then

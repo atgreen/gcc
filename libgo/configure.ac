@@ -173,6 +173,7 @@ is_alpha=no
 is_arm=no
 is_m68k=no
 mips_abi=unknown
+is_moxie=no
 is_ppc=no
 is_ppc64=no
 is_sparc=no
@@ -236,11 +237,15 @@ changequote([,])dnl
     "o64") GOARCH=mipso64 ;;
     esac
     ;;
+  moxie-*-*)
+    is_moxie=yes
+    GOARCH=moxie
+    ;;    
   rs6000*-*-* | powerpc*-*-*)
     AC_COMPILE_IFELSE([
 #ifdef _ARCH_PPC64
 #error 64-bit
-#endif],
+#endif],0-
 [is_ppc=yes], [is_ppc64=yes])
     if test "$is_ppc" = "yes"; then
       GOARCH=ppc
@@ -270,6 +275,7 @@ AM_CONDITIONAL(LIBGO_IS_MIPSO32, test $mips_abi = o32)
 AM_CONDITIONAL(LIBGO_IS_MIPSN32, test $mips_abi = n32)
 AM_CONDITIONAL(LIBGO_IS_MIPSN64, test $mips_abi = n64)
 AM_CONDITIONAL(LIBGO_IS_MIPSO64, test $mips_abi = o64)
+AM_CONDITIONAL(LIBGO_IS_MOXIE, test $is_moxie = yes)
 AM_CONDITIONAL(LIBGO_IS_PPC, test $is_ppc = yes)
 AM_CONDITIONAL(LIBGO_IS_PPC64, test $is_ppc64 = yes)
 AM_CONDITIONAL(LIBGO_IS_SPARC, test $is_sparc = yes)
